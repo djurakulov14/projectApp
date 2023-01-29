@@ -1,4 +1,5 @@
 import MainLayout from '@/Layout/MainLayout'
+import Button from '@mui/material/Button'
 import { useRouter } from 'next/router'
 import React from 'react'
 
@@ -20,12 +21,22 @@ const profile = () => {
             console.log(userInfo);
             
             if(userInfo == null){
-                router.push("/singIn")
+
             }
         }
     }, [])
     
-    
+    if(info == null) {
+        return (
+            <MainLayout>
+                <div className='w-fit m-auto mt-5 flex flex-col items-center gap-3'>
+                    <h1 className='font-bold text-xl'>Sing In first</h1>
+                    <Button variant='outlined' onClick={() => router.push("/singIn")}>Sing In</Button>
+                </div>
+            </MainLayout>
+        )
+    }
+
   return (
     <MainLayout>
         <div className='w-fit m-auto mt-5'>

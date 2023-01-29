@@ -7,6 +7,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import React from 'react'
 import { useForm } from "react-hook-form";
 import { Anybody } from '@next/font/google';
+import { useRouter } from 'next/router';
 
 
 type infoType = {
@@ -18,8 +19,10 @@ type infoType = {
 const Register = () => {
     const [showPassword, setShowPassword] = React.useState<boolean>(false);
 	const { register, handleSubmit, watch, formState: { errors } } = useForm();
+	const router = useRouter()
 	const onSubmit = (data: any) => {
 		localStorage.setItem("userInfo", JSON.stringify(data))
+		router.back()
 	}
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
